@@ -5,9 +5,14 @@ Deep Learning Specialization taught by Andrew Ng.
 - Why is Deep Learning Taking Off?
 	- In order of importance: Computer Hardware (GPU's), Data, Better Algorithms
 - Logistic Regression
-- Shallow Neural Networks (few layers)
+- **Shallow vs Deep Neural Networks (few layers)**
  	- Deep Learning just means Neural Networks with many layers.
-    - More layers allow for more complex models. Think of the layers of NN create complex (non-linear) hypothesis while the output layer is simply a logistic regression classifier of the learned paramters by the previous layers.
+    - **More layers allow for more complex models. Think of the layers of NN create complex (non-linear) hypothesis while the output layer is simply a logistic regression classifier of the learned paramters by the previous layers.**
+    	- Ex Face Detection: First layer finds edges, second layer nose, eyes, lips, last layer finds face
+        - Ex Sounds: First layer finds sounds, second layer finds combinations of sounds, last layer finds words
+        - Ex Circuit Theory: First layer is nand gates, Second layer is or gates, last layer is xor gates
+    - **Without deep networks you require an exponentially large amount of nodes in a single layer to get the same effect of more layers**
+       - Ex Circuit Theory: to get xor from one hidden layer, you would have to map exponentially amount of nodes in hidden layer instead of making nand first with one layer, or with second, than finally xor with last layer) therefore more layers the better for complex models.
  	- Input layer does not count as a layer (Ex. a 2 layer NN, consists of input, 1 hidden, output)
 - Vectorization
  	- Cleaner code and faster due to optimizations
