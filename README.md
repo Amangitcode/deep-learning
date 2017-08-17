@@ -32,7 +32,56 @@ Deep Learning Specialization taught by Andrew Ng.
  - Random Initialization
   	- If we initialize to zeros, then the hidden units become the same function which cause the derivatives to be the same as well which will cause the NN to learn only a single unique function. Therefore there is not point of multiple units or layers
     - Initialize to small random values, if weights are too large, sigmoid or tanh functions yield zero derivatives
-
+## Course 2: Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
+### Topics Covered:
+- Train/Dev/Test Sets
+	- With large data these days usually a 99/0.5/0.5 split or lower. (Ex. m = 1 000 000, then m_dev = 10 000 which is sufficient)
+- Basic Recipe for Machine Learning
+	- These days the bias/variance tradeoff does not need to be considered that much if you: 1) Reduce J as much as possible, will introduce overfitting. 2) Reduce overfitting by introducing regularization.  If J still has high bias/variance you can tweak certain parameters and reduce one without affecting the other. (Ex more example will reduce variance and not affect bias)
+- Reguluarization
+	- You can vary regularization layer by layer as well to address overfitting in certain layers, ex the more units, the higher the weights, therfore have a higher regularization parameter for larger layers
+	- Dropout Regularization
+		- Randomly dropout units in network. This will reduce overfitting by 1) Creating a smaller network, 2) A unit can not rely on just one feature, therefore the weights will be spread out across all features
+		- Used predominately in computer vision since there are so many features, not used that much in other fields
+		- The problem is that J is no longer defined and therefore it is harder to debug your algorithm
+	- Data Augmentation
+		- Creating new data from existing data (Ex. distorting, cropping or transforming an image)
+		- Not as good as getting new unique data but still help reduce variance
+	- Early Stopping
+		- w starts as small random values and grows as you train, by stoping early you can keep w small
+		- A good time to stop early is when J_dev is minimized
+		- The problem with this approach is that if you want to further optimize your NN, you will have to focus on a variety of different things at the same time, ie reducing bias, then reducing variance, then reducing bias again. In contrast to orthgonolization where you focus on only one thing at at time and only once (Ex. 1. Min J_train -> overfitting 2. Reduce overfitting)
+		- Not reccomended
+- Vanishing/Exploding Gradients
+	- The more layers you have, derivatives can become exponentially big or small. If w > 1 then explode, w < 1 then vanish
+	- Solution: set variance of random initialized weights to be a function of n, will keep w close to 1
+- Gradient Checking
+	- Use two sided numerical approximation of gradient, it is more accurate
+	- Difference between numerical approxmation should be less then 10^-7
+- Mini-batch gradient descent
+	- Speeds up computation, better than stochastic (mini-batch size of 1) since you can take advantage of vectorization if mini-batch size is greater than 1
+	- Problems is that it will never converge to a global minimum but always jumps around eventually only jumping around close to the global minimum. This is because we are taking steps for a subset of m
+		- With batch gradient descent J should decrease every iteration
+		- With mini-batch J will oscillate but will have an overall downward trend
+- Exponentially Weighted Averages
+	- Average is computed with an exponential weight
+	- Better than a simple average because you do not need to store all examples in memory to compute, just the previously computed exponential weighted average
+	- Bias correction gets rid of the bias during the initial stage of weights average if you are concerned about it
+- Gradient Descent with Momentum
+	- When we have oscilaation in a dimension we want to reduce it in that dimension and follow a straighter path to the global min. To do so we want to eliminate oscillating gradients in certain dimension and retain non-oscillating gradients in other dimensions. To do so we can take the exponentially weighted moving average of the gradients. Oscillating gradients will create average close to 0 since it is going positve and negative while non-osccilating gradients will retain a high value since they do not change signs.
+	- This elimanted osccilating gradients and thus speeds up learning
+	- Intuitively you can think of using exponentially weights moving averages as applying an acceleration to the velocity of descent. Thus if osscilating, velocity will not increase since acceleration is negative and positive, while non oscillating will increase in velocity since acceleration never change in sign
+- RMSProp (root mean square)
+	- Divide gradients by exponentially weighted moving average, thereby making large oscillating gradients smaller and non ossilating gradients the same
+- Adam Optimization (adapative moment estimation)
+	- Basically RMSProp and Momentum combined
+	- Most popular optimization algo
+	- Divid momentum gradients by exponentially weight moving average
+- Learning Rate Decay
+	- For mini-batch gradient descent there is always osccialtion even when near the global minium, therfore reduce learning rate when close to global miniumum/after iterations so there is less osccilation when you are near the global min
+- Local Optima
+	- Is not problem in high dimensional spaces because you have saddle points rather than optima. J is usually has such large dimension that it is very unlikely to get stuck
+	- The real problem is plateau, areas of small gradients since learning will progress very slowly when you are in these regions. Optimization algos help you get past these plateaus.
 ### Technical Skills Acquired:
 - Python 3.0
   - numpy
