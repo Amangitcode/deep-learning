@@ -5,6 +5,8 @@ Deep Learning Specialization taught by Andrew Ng.
 - Why is Deep Learning Taking Off?
 	- In order of importance: Computer Hardware (GPU's), Data, Better Algorithms
 - Logistic Regression
+	- Linear model, linearly separable data
+	- A neural net is one way to model non-linearly separable data
 - **Shallow vs Deep Neural Networks (few layers)**
  	- Deep Learning just means Neural Networks with many layers.
     - **More layers allow for more complex models. Think of the layers of NN create complex (non-linear) hypothesis while the output layer is simply a logistic regression classifier of the learned paramters by the previous layers.**
