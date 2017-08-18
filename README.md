@@ -32,8 +32,10 @@ Deep Learning Specialization taught by Andrew Ng.
         - Has zero slope for z < 0, but this doesn't usually happen
         - Leaky RELU has a non-zero slope when x < 0, slope can be a hyperparameter that can help making the model better
  - Random Initialization
-  	- If we initialize to zeros, then the hidden units become the same function which cause the derivatives to be the same as well which will cause the NN to learn only a single unique function. Therefore there is not point of multiple units or layers
-    - Initialize to small random values, if weights are too large, sigmoid or tanh functions yield zero derivatives
+  	- If we initialize to zeros, then the hidden units become the same function which cause the derivatives to be the same as well which will cause the NN to learn only a single unique function. Therefore there is not point of multiple units or layers. It has the same performance as a linear classifier such as logistic regression
+    	- Initialize to small random values, if weights are too large, sigmoid or tanh functions yield zero derivatives
+	- well chosen init can speeds up convergence of gradient descent, increase the odds of gradient descent converging to a lower error
+	- He's Initializations works well for RELU
 ## Course 2: Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
 ### Topics Covered:
 - Train/Dev/Test Sets
@@ -42,10 +44,14 @@ Deep Learning Specialization taught by Andrew Ng.
 	- These days the bias/variance tradeoff does not need to be considered that much if you: 1) Reduce J as much as possible, will introduce overfitting. 2) Reduce overfitting by introducing regularization.  If J still has high bias/variance you can tweak certain parameters and reduce one without affecting the other. (Ex more example will reduce variance and not affect bias)
 - Reguluarization
 	- You can vary regularization layer by layer as well to address overfitting in certain layers, ex the more units, the higher the weights, therfore have a higher regularization parameter for larger layers
+	- L2 Regularizaiton
+		- Add sqaure of each theta
 	- Dropout Regularization
 		- Randomly dropout units in network. This will reduce overfitting by 1) Creating a smaller network, 2) A unit can not rely on just one feature, therefore the weights will be spread out across all features
 		- Used predominately in computer vision since there are so many features, not used that much in other fields
 		- The problem is that J is no longer defined and therefore it is harder to debug your algorithm
+		- Apply both in foward and back prop
+		- Scale each layer by dropout prop to keep the same expected value for the activations for both foward and back prop
 	- Data Augmentation
 		- Creating new data from existing data (Ex. distorting, cropping or transforming an image)
 		- Not as good as getting new unique data but still help reduce variance
