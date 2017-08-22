@@ -80,7 +80,7 @@ Deep Learning Specialization taught by Andrew Ng.
 	- This elimanted osccilating gradients and thus speeds up learning
 	- Intuitively you can think of using exponentially weights moving averages as applying an acceleration to the velocity of descent. Thus if osscilating, velocity will not increase since acceleration is negative and positive, while non oscillating will increase in velocity since acceleration never change in sign
 - RMSProp (root mean square)
-	- Divide gradients by exponentially weighted moving average, thereby making large oscillating gradients smaller and non ossilating gradients the same
+	- Divide gradients by exponentially weighted moving average, thereby making large gradients which usually osccilate update less and small gradients which usually don't osccilate update more. 
 - Adam Optimization (adapative moment estimation)
 	- Basically RMSProp and Momentum combined
 	- Most popular optimization algo
@@ -90,6 +90,40 @@ Deep Learning Specialization taught by Andrew Ng.
 - Local Optima
 	- Is not problem in high dimensional spaces because you have saddle points rather than optima. J is usually has such large dimension that it is very unlikely to get stuck
 	- The real problem is plateau, areas of small gradients since learning will progress very slowly when you are in these regions. Optimization algos help you get past these plateaus.
+- Hyperparamter tuning
+	- Order of importance: 1. learning rate 2. batch norm, #hidden units, # mini-batch size 3. #layers, learning rate decay 4. adam (usually just leave default though)
+	- Random values, not increamental grid
+	- Coarse to fine
+- Approriate Scale of HyperParameters
+	- use randomly sampled log scale, not randomly sampled linear 
+- Pandas vs Caviar
+	- Either have one model and take a lot of care of it, or have multiple models and survival of the fittest
+- Batch Normalization
+	- Allows each layer to train faster since its inputs are normalized (fixed mean and variance)
+	- Makes the distribution more constant which reduces covariate shifts (shifts in the distrbution of inputs), thus later layers have less coupling with previous layers, and later layers can more easily learn
+	- Also has a slight regularization effect, the scaling effect adds some noise since mean and variance is calculated from mini-batches and not population (not intended to be used for regularization however, use traditional regularization methods)
+- Batch Norm @ Test Time
+	- Batch norm is calculated on mini-batches, at test time you might not be able to test on minibatches (you don't have enough exmaples in the test set). Therefore you can compute mean and variance through an exponentially weighted average across mini-batches and use it on test set.
+- Multi-Class Classification
+	- Use softmax activation function for multi-classes, takes a C dimensionalvector and maps it to C probabilities that sum to 1.
+	- Ex z = [5 2 -1 3], t = [e^5 e^2 e^-1 e^3], x = sum(t) ( -> a = t / x
+	- Exponential Normalization
+	- Contrast to hardmax function: z = [5 2 -1 3], a = [1 0 0 0]
+	- softmax generalizes logistic regression to C classes (if c = 2 then you just get logistic regression)
+## Course 3: Structuring Machine Learning Projects
+### Topics Covered:
+- Orthogonalization
+	- Focus on one thing at a time. One thing should control one thing. Which allows incremental improvement in performance, step by step. Ex. Early stopping does not follow orthogonalization since it affects both training set and dev set cost function.
+	- Chain of assumption in ML
+		1. Fit training set well on cost function (reduce bias to approx human-level performance )
+			- bigger network, Adam
+		2. Fit dev set well on cost function (reduce variance)
+			- regularization, bigger training set
+		3. Fit test set well on cost function
+			- bigger dev set
+		4. Performas well in real world
+			- change dev set or cost function
 ### Technical Skills Acquired:
 - Python 3.0
   - numpy
+  - Tensorflow
