@@ -123,6 +123,40 @@ Deep Learning Specialization taught by Andrew Ng.
 			- bigger dev set
 		4. Performas well in real world
 			- change dev set or cost function
+- Single Number Evaluation Metric
+	- Precision, Recall, FScore
+- Satisficing and Optimising Metric (satisficing = it must meet a threshhold aftwer we don' really care, optimising = reduce as much as possible
+- Train/Dev/Test Distribution
+	- Ensure that train, dev, test sets have the same distribution
+	- Choose a dev set and test set to reflect data you expect to get in the future and consider important to do well on
+-Dev and Test Set Size
+	- Dev set should be big enough to evalute different models/parameters
+	- Test set should be big enough to see overall performance of classifier
+	- With big data era usually 99/0.5/0.5 split, much smaller than 70/30 back when there was not that much data
+- When to change dev/test set and metrics
+	- If evalutation metric does not give you the desired classification efect, replace it
+- Human Level Performance
+	- Gives us a threshold/idea for Bayes Optimal Error (minimum theoritcal level of error)
+	- Shows us avoidable bias. From this we can see whether we have a bias and variance ossue
+	- If our algo is worse than humans we can :
+		1. Get labeled data from humans
+		2. Gain insight from manual error anlysis
+		3. Better anlysis of bias/variance
+	- Human-level error is used as a proxy for Bayes error 	
+	- The closer you are to human level performance the harder it is to improve your algo (you do not have a proxy for Bayes error anymore, thus you don't know what is avoidable bias)
+- Improving your Model Performance
+	- Fundamental Assumptions of Supervised Learning
+		1. You can fit the training set pretty well (low avoidable bias)
+			- Compare Bayes Error (ex Human-level Performance) to training error to obtain avoidable bias
+				- Train bigger model
+				- Train longer/better optimization algo (momentum, RMSProp, Adam)
+				- NN architecture/hyperparameters search
+		2. Training set performance gernerales pretty well to the dev/test set (low variance)
+			- Compare training error to dev error to obtain variance
+				- More Data
+				- Regularization (L2, dropout, data augmentation)
+				- NN architecture/hyperparameters search
+	
 ### Technical Skills Acquired:
 - Python 3.0
   - numpy
