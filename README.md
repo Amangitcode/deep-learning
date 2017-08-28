@@ -156,7 +156,45 @@ Deep Learning Specialization taught by Andrew Ng.
 				- More Data
 				- Regularization (L2, dropout, data augmentation)
 				- NN architecture/hyperparameters search
-	
+- Error Analysis
+	- Manually go through errors and determine what is the most worthwhile to pursue
+- Cleaning up incorrectly Labelled Errors
+	- Training set: DL algo are robust to random errors in training set but not systematic (consistent errors)
+	- Test/Dev set: Relabel if worthwhile to pursue over other errors
+	- If fixing labels, do same process to both test and dev set so they have same distribution
+	- Look at both wrong and right errors
+- Build system quickly and then iterate
+	- Set up dev/test set and an evaluation metric
+	- Build initial system quickly
+	- Use Bias/Variance analysis & Error analysis to prioritize next steps
+- Different Test/Dev Set Distributions
+	- If distrbutions are different, the distrbution of test/dev set should be the target distrbution
+	- Thus you can use other distrbutions for training set and have more examples than you normally would have with just target set distrbution
+	- You now introduce another source of error : data mismatch
+- Data Mismatch, Bias and Variance with Mismatched Data Distributions 
+	- Training-Dev Set: Same distribution as training set but not used for training
+	- Bayes Error (Human Peformance) and Training Error = Avoidable Bias
+	- Training Error and Training-Dev Error = Variance
+	- Trainin-Dev and Dev Error = Data Mismatch
+	- Dev and Test Error = degree of Overfitting to Dev set
+	- Thus  you can see if different distrbution has a big impact or not
+- Addressing Data Mismatch
+	- Not systemic way to fix, bottom line: you need to make the distrbutions similar
+	- Artificial Data Synthesis: Ex. add background noise to simulate a cafe
+- Transfer Learning
+	- Use previously trained NN for similar task, and transfer to new task
+	- Provides a good starting point, ie low level feature (old task of speech recognition for a new task of wakeword detection)
+	- Good when new task doesn't have much data and old task has been trained on a lot of data
+- Multi-task Learning
+	- Makes sense when
+		- Trainig on tasks that would benefit from shared low level features (ex autonomous driving, different tasks include stop sign detection, road line detection, etc)
+		- # of examples are similar between different tasks
+		- Can train one neural network rather than many different one
+	- Usually used in computer vision, transfer learning is used more these days
+- End-To-End Learning
+	- No steps in between that have been hand designed by us
+	- Required a lot of data, hand designed components inject knowledge from us, thus we require less data if hand designed
+	- Ideal, but not realistic right now
 ### Technical Skills Acquired:
 - Python 3.0
   - numpy
