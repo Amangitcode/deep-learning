@@ -1,5 +1,6 @@
 # Coursera-Deep-Learning Specialization
 Deep Learning Specialization taught by Andrew Ng.
+Coded using numpy and TensorFlow through Jupyter Notebook.
 ## Course 1: Neural Networks & Deep Learning
 ### Topics Covered:
 - Why is Deep Learning Taking Off?
@@ -188,7 +189,7 @@ Deep Learning Specialization taught by Andrew Ng.
 - Multi-task Learning
 	- Makes sense when
 		- Trainig on tasks that would benefit from shared low level features (ex autonomous driving, different tasks include stop sign detection, road line detection, etc)
-		- # of examples are similar between different tasks
+		- the number of examples are similar between different tasks
 		- Can train one neural network rather than many different one
 	- Usually used in computer vision, transfer learning is used more these days
 - End-To-End Learning
