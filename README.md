@@ -1,6 +1,6 @@
-# Coursera-Deep-Learning Specialization
+# Overview
+In-depth dive into neural nets, deep nets, CNN's, RNN's, face recognition, neural style transfer, object detection and structuring/debugging machine learning projects. Coded using Python 3, numpy, and TensorFlow through Jupyter Notebook
 Deep Learning Specialization taught by Andrew Ng.
-Coded using numpy and TensorFlow through Jupyter Notebook.
 ## Course 1: Neural Networks & Deep Learning
 ### Topics Covered:
 - Why is Deep Learning Taking Off?
